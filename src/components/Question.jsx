@@ -2,8 +2,6 @@ import { nanoid } from "nanoid";
 
 export default function Question(props) {
 
-    console.log(props);
-
     /**
     * 
     * @returns class css for background span answer

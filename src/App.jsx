@@ -19,15 +19,11 @@ function App() {
   */
   const [questions, setQuestions] = useState([]);
 
-  /*   
-    {
-      correctAnswer: correctAnswer,
-      selectedAnswer: selectedAnswer,
-    } 
-  */
-  const [selectedAndCorrect, setSelectedAndCorrect] = useState([]);
+  const [startAnotherGame, setStartAnotherGame] = useState(false);
 
-  const [startAnotherGame, setStartAnotherGame] = useState(false)
+  const [numQuestionChecked, setNumQuestionChecked] = useState(0);
+
+  const [numCorrectAnswer, setNumCorrectAnswer] = useState(0);
 
   /**
    * populate array questions
@@ -116,28 +112,7 @@ function App() {
           question
       }))
 
-      const selectedAndCorrectObj = {
-        correctAnswer: correctAnswer,
-        selectedAnswer: selectedAnswer,
-      };
-
-      //add into new array a key-value of selected answer and correct answer
-      setSelectedAndCorrect((oldSelectedAndCorrect) => {
-        const updatedArray = [...oldSelectedAndCorrect];
-        const index = updatedArray.findIndex((element) => element.correctAnswer === correctAnswer);
-
-        if (index !== -1) {
-          // Se esiste già un elemento con la stessa correctAnswer, sostituiscilo
-          updatedArray[index] = selectedAndCorrectObj;
-        } else {
-          // Altrimenti, aggiungi il nuovo oggetto all'array
-          updatedArray.push(selectedAndCorrectObj);
-        }
-        console.log(selectedAndCorrect);
-
-        return updatedArray;
-
-      });
+      setNumQuestionChecked(oldNumQuestionChecked => oldNumQuestionChecked + 1)
     }
   }
 
@@ -154,11 +129,20 @@ function App() {
               isChecked: true
             })
         }))
+
+      questions.forEach(question => {
+        if (question.isCorrect) {
+          setNumCorrectAnswer(numCorrectAnswer => numCorrectAnswer + 1)
+        }
+      });
+
       setStartAnotherGame(!startAnotherGame);
+
     } else if (startAnotherGame) {
 
       startGame()
-      setSelectedAndCorrect([])
+      setNumQuestionChecked(0)
+      setNumCorrectAnswer(0)
       setStartAnotherGame(!startAnotherGame)
     }
   }
@@ -174,7 +158,13 @@ function App() {
 
           {questionEl}
 
-          {selectedAndCorrect.length === 5 &&
+          {startAnotherGame &&
+            <div className="d-inline me-3">
+              {"You scored " + numCorrectAnswer + "/" + questions.length + " correct answers"}
+            </div>
+          }
+
+          {numQuestionChecked === 5 &&
             < div className="btn btn_custom btn-primary border-0 rounded-3 px-5 py-2" onClick={checkAnswer}>
               {!startAnotherGame ? "Check answers" : "Play again"}
             </div>
@@ -187,6 +177,3 @@ function App() {
 }
 
 export default App
-
-
-/* MOSTRARE IL NUMERO DI RISPOSTE ESATTE.*/
