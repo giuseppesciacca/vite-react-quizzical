@@ -2,14 +2,16 @@ import { nanoid } from "nanoid";
 
 export default function Question(props) {
 
+    console.log(props);
+
     /**
     * 
     * @returns class css for background span answer
     */
     function colorAnswer(answer) {
-        if ((props.correctAnswer == answer) && props.checked) {
+        if ((props.correctAnswer == answer) && props.isChecked) {
             return "correct_answer"
-        } else if (props.selected == answer && (props.checked && !props.isCorrect)) {
+        } else if (props.selected == answer && (props.isChecked && !props.isCorrect)) {
             return "wrong_answer"
         } else if (props.selected == answer) {
             return "answer_selected"
@@ -22,7 +24,7 @@ export default function Question(props) {
         return (
             <span
                 key={id}
-                onClick={() => props.selectAnswer(props.question, props.correctAnswer)}
+                onClick={() => props.selectAnswer(props.question, props.correctAnswer, props.isChecked)}
                 className={`btn_answer mx-3 px-3 p-1 rounded-4 ${colorAnswer(answer)}`}>
                 {answer}
             </span >

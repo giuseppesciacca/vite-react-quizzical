@@ -76,7 +76,7 @@ function App() {
   }
 
   const questionEl = questions.map(question =>
-    <Question key={question.id} question={question.question} answers={question.answers} correctAnswer={question.correct_answer} selected={question.selected} checked={question.isChecked} selectAnswer={selectAnswer} isCorrect={question.isCorrect} />
+    <Question key={question.id} question={question.question} answers={question.answers} correctAnswer={question.correct_answer} selected={question.selected} isChecked={question.isChecked} selectAnswer={selectAnswer} isCorrect={question.isCorrect} />
   );
 
   /**
@@ -84,45 +84,47 @@ function App() {
    * @param {string} questionSpan 
    * @param {string} correctAnswer 
    */
-  function selectAnswer(questionSpan, correctAnswer) {
+  function selectAnswer(questionSpan, correctAnswer, isChecked) {
 
-    let selectedAnswer = event.target.textContent;
+    if (!isChecked) {
+      let selectedAnswer = event.target.textContent;
 
-    //if the question contain the questionSpan value and the correctAnswer value
-    //so the question is the one we want work on.
-    //then add to that question the selected value.
-    setQuestions(oldQuestion => oldQuestion.map(question => {
-      return Object.values(question).indexOf(correctAnswer) > -1 && Object.values(question).indexOf(questionSpan) > -1 ?
-        {
-          ...question,
-          selected: selectedAnswer,
-          isCorrect: correctAnswer === selectedAnswer ? true : false
-        } :
-        question
-    }))
+      //if the question contain the questionSpan value and the correctAnswer value
+      //so the question is the one we want work on.
+      //then add to that question the selected value.
+      setQuestions(oldQuestion => oldQuestion.map(question => {
+        return Object.values(question).indexOf(correctAnswer) > -1 && Object.values(question).indexOf(questionSpan) > -1 ?
+          {
+            ...question,
+            selected: selectedAnswer,
+            isCorrect: correctAnswer === selectedAnswer ? true : false
+          } :
+          question
+      }))
 
-    const selectedAndCorrectObj = {
-      correctAnswer: correctAnswer,
-      selectedAnswer: selectedAnswer,
-    };
+      const selectedAndCorrectObj = {
+        correctAnswer: correctAnswer,
+        selectedAnswer: selectedAnswer,
+      };
 
-    //add into new array a key-value of selected answer and correct answer
-    setSelectedAndCorrect((oldSelectedAndCorrect) => {
-      const updatedArray = [...oldSelectedAndCorrect];
-      const index = updatedArray.findIndex((element) => element.correctAnswer === correctAnswer);
+      //add into new array a key-value of selected answer and correct answer
+      setSelectedAndCorrect((oldSelectedAndCorrect) => {
+        const updatedArray = [...oldSelectedAndCorrect];
+        const index = updatedArray.findIndex((element) => element.correctAnswer === correctAnswer);
 
-      if (index !== -1) {
-        // Se esiste già un elemento con la stessa correctAnswer, sostituiscilo
-        updatedArray[index] = selectedAndCorrectObj;
-      } else {
-        // Altrimenti, aggiungi il nuovo oggetto all'array
-        updatedArray.push(selectedAndCorrectObj);
-      }
-      console.log(selectedAndCorrect);
+        if (index !== -1) {
+          // Se esiste già un elemento con la stessa correctAnswer, sostituiscilo
+          updatedArray[index] = selectedAndCorrectObj;
+        } else {
+          // Altrimenti, aggiungi il nuovo oggetto all'array
+          updatedArray.push(selectedAndCorrectObj);
+        }
+        console.log(selectedAndCorrect);
 
-      return updatedArray;
+        return updatedArray;
 
-    });
+      });
+    }
   }
 
   /**
@@ -160,7 +162,7 @@ function App() {
 
           {selectedAndCorrect.length === 5 &&
             < div className="btn btn_custom btn-primary border-0 rounded-3 px-5 py-2" onClick={checkAnswer}>
-              {!startAnotherGame ? "Check answers" : "Start new game"}
+              {!startAnotherGame ? "Check answers" : "Play again"}
             </div>
           }
 
@@ -171,3 +173,7 @@ function App() {
 }
 
 export default App
+
+
+/* MOSTRARE IL NUMERO DI RISPOSTE ESATTE. 
+SISTEMARE I TESTI DELLE DOMANDE. */
