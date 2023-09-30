@@ -27,6 +27,8 @@ function App() {
   */
   const [selectedAndCorrect, setSelectedAndCorrect] = useState([]);
 
+  const [startAnotherGame, setStartAnotherGame] = useState(false)
+
   /**
    * populate array questions
    */
@@ -127,14 +129,22 @@ function App() {
    * 
    */
   function checkAnswer() {
-    setQuestions(oldQuestion =>
-      oldQuestion.map(question => {
-        return (
-          {
-            ...question,
-            isChecked: true
-          })
-      }))
+    if (!startAnotherGame) {
+      setQuestions(oldQuestion =>
+        oldQuestion.map(question => {
+          return (
+            {
+              ...question,
+              isChecked: true
+            })
+        }))
+
+      setStartAnotherGame(!startAnotherGame);
+    } else if (startAnotherGame) {
+      startGame()
+      setSelectedAndCorrect([])
+      setStartAnotherGame(!startAnotherGame)
+    }
   }
 
   return (
@@ -149,7 +159,9 @@ function App() {
           {questionEl}
 
           {selectedAndCorrect.length === 5 &&
-            < div className="btn btn_custom btn-primary border-0 rounded-3 px-5 py-2" onClick={checkAnswer}>Check answers</div>
+            < div className="btn btn_custom btn-primary border-0 rounded-3 px-5 py-2" onClick={checkAnswer}>
+              {!startAnotherGame ? "Check answers" : "Start new game"}
+            </div>
           }
 
         </div>
