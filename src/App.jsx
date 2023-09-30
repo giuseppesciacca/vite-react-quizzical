@@ -60,7 +60,7 @@ function App() {
         questArray.push({
           //custom object question
           id: nanoid(),
-          question: question.question,
+          question: decodeHtmlEntities(question.question),
           answers: shuffle([...question.incorrect_answers, question.correct_answer]),
           correct_answer: question.correct_answer,
           selected: "",
@@ -73,6 +73,20 @@ function App() {
     };
 
     getQuestions()
+  }
+
+  /**
+   * 
+   * @param {string} question 
+   * @returns 
+   */
+  function decodeHtmlEntities(question) {
+
+    let txt = document.createElement("textarea");
+
+    txt.innerHTML = question;
+
+    return txt.value;
   }
 
   const questionEl = questions.map(question =>
@@ -175,5 +189,4 @@ function App() {
 export default App
 
 
-/* MOSTRARE IL NUMERO DI RISPOSTE ESATTE. 
-SISTEMARE I TESTI DELLE DOMANDE. */
+/* MOSTRARE IL NUMERO DI RISPOSTE ESATTE.*/
