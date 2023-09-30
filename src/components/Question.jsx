@@ -7,7 +7,7 @@ export default function Question(props) {
     * @returns class css for background span answer
     */
     function colorAnswer(answer) {
-        if (props.selected == answer && (props.checked && props.isCorrect)) {
+        if ((props.correctAnswer == answer) && props.checked) {
             return "correct_answer"
         } else if (props.selected == answer && (props.checked && !props.isCorrect)) {
             return "wrong_answer"

@@ -63,7 +63,7 @@ function App() {
           question: question.question,
           answers: shuffle([...question.incorrect_answers, question.correct_answer]),
           correct_answer: question.correct_answer,
-          selected: '',
+          selected: "",
           isChecked: false,
           isCorrect: false
         })
@@ -138,9 +138,9 @@ function App() {
               isChecked: true
             })
         }))
-
       setStartAnotherGame(!startAnotherGame);
     } else if (startAnotherGame) {
+
       startGame()
       setSelectedAndCorrect([])
       setStartAnotherGame(!startAnotherGame)
