@@ -35,7 +35,7 @@ export default function Question(props) {
         <div id="questions" className=" pb-4 text-start">
             <h5 className="mb-3 fw-semibold">{props.question}</h5>
 
-            <div className="d-flex align-items-center justify-content-around  pb-3">
+            <div className="d-flex align-items-center justify-content-around pb-3">
                 {answerEl}
             </div>
 
