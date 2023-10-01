@@ -5,9 +5,32 @@ body {
     color: #293264;
 }
 
+.btn_custom,
+.btn_answer {
+    cursor: pointer;
+}
+
 .btn_custom {
     background-color: #4d5b9e;
-    cursor: pointer;
+}
+
+.btn_answer {
+    border: 2px solid #4d5b9e;
+}
+
+.answer_selected,
+.wrong_answer,
+.correct_answer {
+    border: 0;
+}
+
+.not_selected_after_check,
+.wrong_answer {
+    color: #8f93a9;
+}
+
+.not_selected_after_check {
+    border: 2px solid #8f93a9;
 }
 
 .answer_selected {
@@ -31,12 +54,6 @@ body {
     margin: auto;
     max-width: 800px;
     min-width: 400px;
-
-
-    .btn_answer {
-        border: 2px solid #4d5b9e;
-        cursor: pointer;
-    }
 
     hr {
         font-size: 5px;
