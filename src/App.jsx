@@ -112,7 +112,10 @@ function App() {
           question
       }))
 
-      setNumQuestionChecked(oldNumQuestionChecked => oldNumQuestionChecked + 1)
+      //if numQuestionChecked = 5 don't increase anymore
+      setNumQuestionChecked(oldNumQuestionChecked => {
+        return (oldNumQuestionChecked === 5 ? oldNumQuestionChecked = 5 : oldNumQuestionChecked + 1)
+      })
     }
   }
 
@@ -130,12 +133,14 @@ function App() {
             })
         }))
 
+      // every choice, check if is correct
       questions.forEach(question => {
         if (question.isCorrect) {
           setNumCorrectAnswer(numCorrectAnswer => numCorrectAnswer + 1)
         }
       });
 
+      //if we selcted all questions
       setStartAnotherGame(!startAnotherGame);
 
     } else if (startAnotherGame) {
@@ -159,17 +164,17 @@ function App() {
           {questionEl}
 
           {startAnotherGame &&
-            <div className="d-inline me-3">
+            <div className="d-inline me-3 fw-bold fs-5">
               {"You scored " + numCorrectAnswer + "/" + questions.length + " correct answers"}
             </div>
           }
 
           {numQuestionChecked === 5 &&
-            < div className="btn btn_custom btn-primary border-0 rounded-3 px-5 py-2" onClick={checkAnswer}>
+            < div className="btn btn_custom btn-primary border-0 rounded-4 px-5 py-2 fw-semibold" onClick={checkAnswer}>
+
               {!startAnotherGame ? "Check answers" : "Play again"}
             </div>
           }
-
         </div>
       </main >
     </>
@@ -177,3 +182,8 @@ function App() {
 }
 
 export default App
+
+/* 
+Fare lo stile.
+Magari decodificare anche le risposte.
+*/
