@@ -170,7 +170,7 @@ function App() {
           }
 
           {numQuestionChecked === 5 &&
-            < div className="btn btn_custom btn-primary border-0 rounded-4 px-5 py-2 fw-semibold" onClick={checkAnswer}>
+            < div className="btn btn_custom border-0 rounded-4 px-5 py-2 fw-semibold text-white" onClick={checkAnswer}>
 
               {!startAnotherGame ? "Check answers" : "Play again"}
             </div>
@@ -184,6 +184,5 @@ function App() {
 export default App
 
 /* 
-Fare lo stile.
 Magari decodificare anche le risposte.
 */

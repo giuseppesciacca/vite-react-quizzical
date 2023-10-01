@@ -12,6 +12,15 @@ body {
 
 .btn_custom {
     background-color: #4d5b9e;
+
+    &:hover {
+        background-color: #4d5b9e;
+    }
+
+    &:active {
+        background-color: #4d5b9e !important;
+        scale: 0.95;
+    }
 }
 
 .btn_answer {
