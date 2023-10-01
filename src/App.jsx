@@ -86,7 +86,16 @@ function App() {
   }
 
   const questionEl = questions.map(question =>
-    <Question key={question.id} question={question.question} answers={question.answers} correctAnswer={question.correct_answer} selected={question.selected} isChecked={question.isChecked} selectAnswer={selectAnswer} isCorrect={question.isCorrect} />
+    <Question
+      key={question.id}
+      question={question.question}
+      answers={question.answers}
+      correctAnswer={question.correct_answer}
+      selected={question.selected}
+      isChecked={question.isChecked}
+      selectAnswer={selectAnswer}
+      isCorrect={question.isCorrect}
+      decodeHtmlEntities={decodeHtmlEntities} />
   );
 
   /**
@@ -182,7 +191,3 @@ function App() {
 }
 
 export default App
-
-/* 
-Magari decodificare anche le risposte.
-*/

@@ -26,7 +26,7 @@ export default function Question(props) {
                 key={id}
                 onClick={() => props.selectAnswer(props.question, props.correctAnswer, props.isChecked)}
                 className={`btn_answer mx-3 px-3 p-1 rounded-4 ${colorAnswer(answer)}`}>
-                {answer}
+                {props.decodeHtmlEntities(answer)}
             </span >
         )
     });
