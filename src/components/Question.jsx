@@ -13,6 +13,8 @@ export default function Question(props) {
             return "wrong_answer"
         } else if (props.selected == answer) {
             return "answer_selected"
+        } else if ((props.isChecked && !props.isCorrect) || (props.isChecked && props.isCorrect)) {
+            return "not_selected_after_check"
         }
     }
 
