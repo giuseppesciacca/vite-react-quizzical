@@ -110,7 +110,7 @@ function App() {
 
       //if the question contain the questionSpan value and the correctAnswer value
       //so the question is the one we want work on.
-      //then add to that question the selected value.
+      //then add to that question the "selected" value.
       setQuestions(oldQuestion => oldQuestion.map(question => {
         return Object.values(question).indexOf(correctAnswer) > -1 && Object.values(question).indexOf(questionSpan) > -1 ?
           {
@@ -121,10 +121,10 @@ function App() {
           question
       }))
 
-      //if numQuestionChecked = 5 don't increase anymore
-      setNumQuestionChecked(oldNumQuestionChecked => {
-        return (oldNumQuestionChecked === 5 ? oldNumQuestionChecked = 5 : oldNumQuestionChecked + 1)
-      })
+      /* if this question have selected === "" (so it's not selected yet), add +1 to numQuestionChecked */
+      questions.map(question => {
+        return (Object.values(question).indexOf(correctAnswer) > -1 && Object.values(question).indexOf(questionSpan) > -1 && question.selected === "") && setNumQuestionChecked(oldNumQuestionChecked => oldNumQuestionChecked + 1);
+      });
     }
   }
 
