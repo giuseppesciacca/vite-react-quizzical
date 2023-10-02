@@ -25,7 +25,7 @@ export default function Question(props) {
             <div
                 key={id}
                 onClick={() => props.selectAnswer(props.question, props.correctAnswer, props.isChecked)}
-                className={`col-12 col-sm-6 col-md-4 col-lg-2 btn_answer mx-3 px-3 p-1 rounded-4 text-center ${colorAnswer(answer)}`}>
+                className={`col-10 col-sm-6 col-md-4 col-lg-2 btn_answer mx-3 p-1 rounded-4 text-center ${colorAnswer(answer)}`}>
 
                 {props.decodeHtmlEntities(answer)}
 
@@ -35,9 +35,10 @@ export default function Question(props) {
 
     return (
         <div id="questions" className="pb-4 text-start">
-            <h5 className="mb-3 fw-semibold">{props.question}</h5>
 
             <div className="container">
+                <h5 className="col-12 mb-4 fw-semibold">{props.question}</h5>
+
                 <div className="row align-items-center justify-content-around g-3 pb-3">
                     {answerEl}
                 </div>

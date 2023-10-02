@@ -164,7 +164,7 @@ function App() {
   return (
     <>
       <main>
-        <div className="container text-center py-5">
+        <div className="container-fluid text-center py-5">
 
           {!questions.length &&
             <StartPage startGame={startGame} />
