@@ -22,21 +22,25 @@ export default function Question(props) {
         const id = nanoid();
 
         return (
-            <span
+            <div
                 key={id}
                 onClick={() => props.selectAnswer(props.question, props.correctAnswer, props.isChecked)}
-                className={`btn_answer mx-3 px-3 p-1 rounded-4 ${colorAnswer(answer)}`}>
+                className={`col-12 col-sm-6 col-md-4 col-lg-2 btn_answer mx-3 px-3 p-1 rounded-4 text-center ${colorAnswer(answer)}`}>
+
                 {props.decodeHtmlEntities(answer)}
-            </span >
+
+            </div >
         )
     });
 
     return (
-        <div id="questions" className=" pb-4 text-start">
+        <div id="questions" className="pb-4 text-start">
             <h5 className="mb-3 fw-semibold">{props.question}</h5>
 
-            <div className="d-flex align-items-center justify-content-around pb-3">
-                {answerEl}
+            <div className="container">
+                <div className="row align-items-center justify-content-around g-3 pb-3">
+                    {answerEl}
+                </div>
             </div>
 
             <hr />
