@@ -1,14 +1,17 @@
-# React + Vite + Bootstrap + Scss
-## Quizzical game
-
-<hr>
+# Quizzical game
+## React + Vite + Bootstrap + Scss
 
 Quiz web app.
+
+Simple game I made to pratice with React. 
+
+Answer the 5 questions and check your result!
+
+<hr>
 
 Final solo-project of the React course by Bob Ziroll.
 
 Through the opentdb API I receive 5 questions with the answers.
-Answer the 5 questions and check your result!
 
 - Division of the page into components;
 - Passing props to a component;
